@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/10 09:22:47 by jereligi          #+#    #+#              #
-#    Updated: 2019/10/15 13:54:11 by jereligi         ###   ########.fr        #
+#    Updated: 2019/11/01 13:58:22 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,9 +57,15 @@ SRCBONUS = ft_lstnew_bonus.c \
 		ft_lstmap_bonus.c \
 		ft_lstlast_bonus.c 	
 
-OBJ = $(SRC:.c=.o)
+PATH = ./src/
 
-OBJBONUS = $(SRCBONUS:.c=.o)
+_SRC = $(addprefix $(PATH), $(SRC))
+
+_SRCBONUS = $(addprefix $(PATH), $(SRC))
+
+OBJ = $(_SRC:.c=.o)
+
+OBJBONUS = $(_SRCBONUS:.c=.o)
 
 CC = gcc
 
@@ -68,7 +74,7 @@ CFLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 	
 	
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJ) $(HEADER_DIR)
 	ar rc $(NAME) $(OBJ)
 
 bonus : $(OBJBONUS) $(OBJ)
